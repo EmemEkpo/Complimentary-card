@@ -9,7 +9,7 @@ function renderCards() {
   for (let index = 0; index < dat.length; index++) {
     const context = dat[index];
     cards.push(`
-        <div class= "col-12 mb-5 col-sm-6 col-md-3">
+        <div class= "col-12 mb-3 col-sm-6 col-md-3">
             <div class="card" style ="width: 18rem;">
              <img src="${context.avatar}" class="card-img" alt="picture">
              <div class="card-body">
