@@ -1,10 +1,23 @@
 let data = {};
+let filterData = {};
 const avatarElem = document.getElementById("avatar");
+const previousElem = document.getElementById("previousBtn");
+const nextElem = document.getElementById("nextBtn");
+let presentPage = 1;
 const cards = [];
+
+previousElem.addEventListener("click", () => {
+  presentPage--;
+  fetchData();
+});
+nextElem.addEventListener("click", () => {
+  presentPage++;
+  fetchData();
+});
 
 function renderCards() {
   //loop through the data and create a card for each user
-  const dat = data;
+  const dat = filterData;
 
   for (let index = 0; index < dat.length; index++) {
     const context = dat[index];
@@ -25,11 +38,12 @@ function renderCards() {
 }
 //fetch data from the api
 function fetchData() {
-  const url = "https://reqres.in/api/users?page=1";
+  const url = "https://reqres.in/api/users?page=${presentPage}";
   fetch(url)
     .then((response) => response.json())
     .then((res) => {
       data = res.data;
+      filterData = res.data;
       renderCards();
     });
 }
